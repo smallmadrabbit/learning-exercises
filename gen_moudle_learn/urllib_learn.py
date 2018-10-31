@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib
-from urllib import request
+from urllib import request, parse
 
 
 def get_request():
@@ -24,8 +24,6 @@ def get_request_with_header():
 
 
 def post_request():
-    from urllib import request, parse
-
     print('Login to weibo.cn...')
     email = input('Email: ')
     passwd = input('Password: ')
@@ -38,6 +36,7 @@ def post_request():
         ('ec', ''),
         ('pagerefer', 'https://passport.weibo.cn/signin/welcome?entry=mweibo&r=http%3A%2F%2Fm.weibo.cn%2F')
     ])
+    print(login_data)
 
     req = request.Request('https://passport.weibo.cn/sso/login')
     req.add_header('Origin', 'https://passport.weibo.cn')
