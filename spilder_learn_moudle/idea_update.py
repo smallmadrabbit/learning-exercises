@@ -48,12 +48,14 @@ if __name__ == '__main__':
     idea_json = requests.get(data_url).text
     # print(idea_json, type(idea_json))
     idea_data = json.loads(idea_json)
+
+    iiu_data = idea_data['IIU'][0]
     # 更新日期
-    update_date = idea_data['IIU'][0]['date']
+    update_date = iiu_data['date']
     # 下载连接
-    download_url = idea_data['IIU'][0]['downloads']['windows']['link']
+    download_url = iiu_data['downloads']['windows']['link']
     # 文件大小
-    size = idea_data['IIU'][0]['downloads']['windows']['size']
+    size = iiu_data['downloads']['windows']['size']
     file_name = str(download_url).split("/")[-1]
     with closing(requests.get(download_url, stream=True)) as response:
         chunk_size = 1024  # 单次请求最大值
